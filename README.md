@@ -2,7 +2,7 @@
 Practicas de Tecnicas de Inteligencia Artifical de UPV año 2018-2019
 
 1. Practica - Fuzzy Clips ( Control de Crucero de un vehiculo + Modificacion del Examen ).
-   -Modificacion del Examen ( activar automáticamente los sistemas de seguridad del vehículo, ante una condición de frenada extremadamente brusca por accidente inminente )
+   - Modificacion del Examen ( activar automáticamente los sistemas de seguridad del vehículo, ante una condición de frenada extremadamente brusca por accidente inminente )
 
 2. Practica - ( Algoritmos Geneticos)
    - Ejemplo: Operaciones matematicas
