@@ -15,3 +15,4 @@ Practicas de Tecnicas de Inteligencia Artifical de UPV año 2018-2019
 4. Practica - CONFLEX
    - Problema del Cuadrado Magico
    - Problema del Fabricante de coches
+   - CSP Valuados - Ejercicio Nueva Hamburgesa

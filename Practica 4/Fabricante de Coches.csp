@@ -1,0 +1,60 @@
+##### Fabricante de Coches.csp = Cuadrado Magico
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search : rfla ,
+	all_solutions
+#	best_solution
+#	first_solutions 5
+;
+\static_labeling_order  :
+	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+\vi : m1,m2,m3,m4,m5 0..4 ; #diminio de 1..npow(2) aqui n=3
+
+##############################
+###      CONTRAINTES       ###
+############################## 
+
+\cc : restriccion1 , ; ##m1=1 <-> m2=1 OR m2=2
+\doc restriccion2
+\ci res2doc1, m1!= 1;
+\or
+\ci res2doc2, m2 = 1;
+\or
+\ci resdoc13, m2 = 2;
+;
+\doc restriccion1
+\ci res1doc1, m1= 1;
+\or
+\ci res1doc2, m2 != 1;
+\ci re1doc13, m2 != 2; #res1doc2 and res1doc3
+;
+#m1=1 <-> m2=1 OR m2=2
+#(m1=1 -> (m2=1 OR m2=2)) AND ((m2=1 OR m2=2)-> m1=1)
+#( (m1 != 1) OR (m2 = 1 OR m2 = 2)) AND ((m2!=1 AND m2=2) OR (m1 = 1))
+
+
