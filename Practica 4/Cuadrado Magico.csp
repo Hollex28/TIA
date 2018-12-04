@@ -1,0 +1,51 @@
+##### Cuadrado Magico.csp = Cuadrado Magico
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search : rfla ,
+	all_solutions
+#	best_solution
+#	first_solutions 5
+;
+\static_labeling_order  :
+	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+\vi : q1,q2,q3,q4,q5,q6,q7,q8,q9 1..9 ; #diminio de 1..npow(2) aqui n=3
+
+##############################
+###      CONTRAINTES       ###
+############################## 
+
+\ci : restriccion1 , q1+q2+q3 = q4+q5+q6;
+\ci : restriccion2 , q1+q2+q3 = q7+q8+q9;
+\ci : restriccion3 , q1+q2+q3 = q1+q4+q7;
+\ci : restriccion4 , q1+q2+q3 = q2+q5+q8;
+\ci : restriccion5 , q1+q2+q3 = q3+q6+q9;
+\ci : restriccion5 , q1+q2+q3 = q1+q5+q9;
+\ci : restriccion5 , q1+q2+q3 = q7+q5+q3;
+\cim : restriccion6 , <> (q1,q2,q3,q4,q5,q6,q7,q8,q9);
+
+

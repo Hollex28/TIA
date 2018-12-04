@@ -10,4 +10,8 @@ Practicas de Tecnicas de Inteligencia Artifical de UPV año 2018-2019
    - Modificacion del examen: (Cambiar funcionamiento de la funcion objetivos con 2 casos especiales de capas consecutivas y Modificar el tipo de genotipo para permitir la repeticion de capas (No implementado))
 
 3. Practica - Planificacion
-	- Escenario de Logistica
+   - Escenario de Logistica.
+	
+4. Practica - CONFLEX
+   - Problema del Cuadrado Magico
+   - Problema del Fabricante de coches
