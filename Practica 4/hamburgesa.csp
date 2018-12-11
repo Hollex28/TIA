@@ -1,0 +1,73 @@
+##### c4q.csp = four queens problem
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search : rfla ,
+	all_solutions
+#	best_solution
+#	first_solutions 5
+;
+\static_labeling_order  :
+	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+\vi : pan 2..5;
+\vi : hamburgesa 1..5;
+\vi : beicon,cebolla,queso 0..3;
+
+##############################
+###      CONTRAINTES       ###
+############################## 
+#apartado 3.1
+\ci : dospanesporhamburgesa , pan = hamburgesa + 1 ;
+\doc: complemento
+		\ci: res2doc1, beicon != 0;
+	\or
+		\ci: res2doc2, queso != 0;
+	\or
+		\ci: res2doc3, cebolla != 0;
+;
+#apartado 3.2
+\ce: preferencias 	hamburgesa,
+						5	(1)
+						4	(0.9)
+						3	(0.8)
+						2	(0.4)
+						1	(0.2);
+\ce: preferencias 	beicon,
+						3	(0.8)
+						2	(0.4)
+						1	(0.2)
+						0	(0.1);
+\ce: preferencias 	queso,
+						3	(0.8)
+						2	(0.4)
+						1	(0.2)
+						0	(0.1);
+\ce: preferencias 	cebolla,
+						3	(0.8)
+						2	(0.4)
+						1	(0.2)
+						0	(0.1);
