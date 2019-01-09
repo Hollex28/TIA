@@ -1,0 +1,313 @@
+SOLUCION A LA PRACTICA-4 (CSP)
+PARTE 1: Cuadrado Mágico
+\alpha = 0.1;
+\filtering : f ;
+\search : rfla , all_solutions;
+\static_labeling_order :smallest_domain ;
+\verbose : display_solutions ;
+###
+
+VARIABLES
+
+###
+
+\vi : X11, X12, X13, X21, X22, X23, X31, X32, X33 1..9;
+\vi : Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8 1 .. 20;
+###
+
+RESTRICCIONES HAY OTRAS MUCHAS VARIANTES
+
+###
+
+\cim : distintas , <>(X11, X12, X13, X21, X22, X23, X31, X32, X33);
+\ci : a , Z1=X11+X12+X13;
+\ci : a , Z2=X21+X22+X23;
+\ci : a , Z3=X31+X32+X33;
+\ci : a , Z4=X11+X21+X31;
+\ci : a , Z5=X12+X22+X32;
+\ci : a , Z6=X13+X23+X33;
+\ci : a , Z7=X11+X22+X33;
+\ci : a , Z8=X13+X22+X31;
+\cim : igualdad , =(Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8);
+
+Soluciones:
+SOLUTION No 1
+X11 = 2 X12 = 7 X13 = 6 X21 = 9 X22 = 5 X23 = 1 X31 = 4 X32 = 3 X33 = 8 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+
+SOLUTION No 2
+X11 = 2 X12 = 9 X13 = 4 X21 = 7 X22 = 5 X23 = 3 X31 = 6 X32 = 1 X33 = 8 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+SOLUTION No 3
+X11 = 4 X12 = 3 X13 = 8 X21 = 9 X22 = 5 X23 = 1 X31 = 2 X32 = 7 X33 = 6 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+SOLUTION No 4
+X11 = 4 X12 = 9 X13 = 2 X21 = 3 X22 = 5 X23 = 7 X31 = 8 X32 = 1 X33 = 6 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+SOLUTION No 5
+X11 = 6 X12 = 1 X13 = 8 X21 = 7 X22 = 5 X23 = 3 X31 = 2 X32 = 9 X33 = 4 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+SOLUTION No 6
+X11 = 6 X12 = 7 X13 = 2 X21 = 1 X22 = 5 X23 = 9 X31 = 8 X32 = 3 X33 = 4 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+SOLUTION No 7
+X11 = 8 X12 = 1 X13 = 6 X21 = 3 X22 = 5 X23 = 7 X31 = 4 X32 = 9 X33 = 2 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+SOLUTION No 8
+X11 = 8 X12 = 3 X13 = 4 X21 = 1 X22 = 5 X23 = 9 X31 = 6 X32 = 7 X33 = 2 Z1 = 15 Z2 = 15 Z3 = 15 Z4 = 15 Z5 = 15
+Z6 = 15 Z7 = 15 Z8 = 15 sat = 1.000 .
+
+PARTE 2: Se obtienen 4 soluciones.
+\alpha = 0.1;
+\filtering : f ;
+\search : rfla , all_solutions;
+\static_labeling_order : smallest_domain ;
+\verbose : display_solutions ;
+###
+
+VARIABLES
+
+###
+
+\vi : M1,M2,M3,M4,M5 0..3; # 0: No Pintura Ni Metalizado, 1: Pintura, 2: Metalizado, 3: Pintura y Metalizado.
+###
+
+RESTRICCIONES HAY OTRAS MUCHAS VARIANTES
+
+###
+
+#- Modelo M1 acabado “Pintura”, si y solamente si, modelo M2 acabado “Pintura” o “Metalizado”.
+\doc : doc1a # 1.
+\ci : ci1a1 , M1 != 1 ;
+\or
+\ci : ci1a2 , M2 = 1 ;
+\or
+\ci : ci1a2 , M2 = 2 ;;
+\doc : doc1b
+\ci : ci1a1 , M1 = 1 ;
+\or
+\ci : ci1a2 , M2 != 2 ;;
+\doc : doc1c
+\ci : ci1a1 , M1 = 1 ;
+\or
+\ci : ci1a2 , M2 != 1 ;;
+# M1 acabado “Metalizado” si y solamente si, o M3 tiene acabado base (sin “Pintura” ni “Metalizado”) o M5 tiene acabado
+“Pintura” y “Metalizado”.
+\doc : doc1d
+\ci : ci1c1 , M1 != 2 ;
+\or
+\ci : ci1c2 , M3 = 0 ;
+\or
+\ci : ci1c3 , M5 = 3 ;;
+\doc : doc1e
+\ci : ci1d1 , M3 != 0 ;
+\or
+\ci : ci1d2 , M1 = 2 ;;
+\doc : doc1f
+\ci : ci1f1 , M5 != 3 ;
+\or
+\ci : ci1f2 , M1 = 2 ;;
+# Modelo M2 acabado “Pintura” si y solamente si, o modelo M1 acabado “Pintura” o “Metalizado”, o bien, Modelo M5
+acabado base (sin “Pintura” ni “Metalizado”).
+\doc : doc2a
+\ci : ci2a1 , M2 != 1 ;
+\or
+\ci : ci2a2 , M1 = 1 ;
+\or
+\ci : ci2a3 , M1 = 2 ;
+\or
+\ci : ci2a4 , M5 = 0 ;;
+
+\doc : doc2a1
+\ci : ci2b1 , M1 != 1 ;
+\or
+\ci : ci2b2 , M2 = 1 ;;
+\doc : doc2a2
+\ci : ci2b1 , M1 != 2 ;
+\or
+\ci : ci2b2 , M2 = 1 ;;
+\doc : doc2a3
+\ci : ci2b1 , M5 != 0 ;
+\or
+\ci : ci2b2 , M2 = 1 ;;
+# El modelo M2 tiene acabado “Metalizado” si y solamente si el modelo M3 o el M4 tienen el acabado completo (“Pintura y
+Metalizado”).
+\doc : doc2b
+\ci : ci2b1 , M2 != 2 ;
+\or
+\ci : ci2b2 , M3 = 3 ;
+\or
+\ci : ci2b3 , M4 = 3 ;;
+\doc : doc2c
+\ci : ci2c1 , M3 != 3 ;
+\or
+\ci : ci2c2 , M2 = 2 ;;
+\doc : doc2d
+\ci : ci2d1 , M4 != 3 ;
+\or
+\ci : ci2d2 , M2 = 2 ;;
+# EL modelo M1 no mismo acabado que M2. Los modelos M3, M4 y M5 tienen acabados distintos entre ellos.
+\ci : aa3a ,
+
+M1 != M2;
+
+\cim: aa3b,
+
+<> (M3, M4, M5);
+
+SOLUTION No 1
+M1 = 0 M2 = 3 M3 = 1 M4 = 0 M5 = 2 sat = 1.000 .
+SOLUTION No 2
+M1 = 0 M2 = 3 M3 = 2 M4 = 0 M5 = 1 sat = 1.000 .
+
+SOLUTION No 3
+M1 = 3 M2 = 0 M3 = 1 M4 = 0 M5 = 2 sat = 1.000 .
+
+SOLUTION No 4
+M1 = 3 M2 = 0 M3 = 2 M4 = 0 M5 = 1 sat = 1.000 .
+
+PARTE 3. CSP FLEXIBLE
+###### Ej-1 Modelo Base ######
+
+########## Ej. 2 ##########################
+
+\fuzzy_cut_step : 0.10;
+#\alpha = 0.1;
+#\filtering : f ;
+\search : fc , all_solutions ;
+\value_order: bottom_first;
+\static_labeling_order : smallest_domain ;
+\verbose : display_solutions ;
+\save : salida.csp ;
+
+\fuzzy_cut_step : 0.1;
+\alpha = 0.8;
+#\filtering : f ;
+\search : fc , all_solutions ;
+\value_order: bottom_first;
+\static_labeling_order : smallest_domain ;
+\verbose : display_solutions ;
+\save : salida.csp ;
+
+###
+
+###
+
+VARIABLES
+
+###
+
+\vi = PAN 2...5 ;\vi = HAMBURGUESA 1...5 ;
+\vi = QUESO 0...3 ;
+\vi = CEBOLLA 0...3 ;
+\vi = BAICON 0...3 ;
+\outsol : all alphabetic_order display_step;
+##############################
+### CONTRAINTES
+###
+##############################
+
+VARIABLES
+
+###
+
+\vi = PAN 2...5 ;
+\vi = HAMBURGUESA 1...5 ;
+\vi = QUESO 0...3 ;
+\vi = CEBOLLA 0...3 ;
+\vi = BAICON 0...3 ;
+\outsol : all alphabetic_order display_step;
+###
+
+CONTRAINTES
+
+###
+
+\ci: C1, PAN=HAMBURGUESA +1;
+\ci: C1, PAN=HAMBURGUESA +1;
+\ci: C2 , QUESO + BAICON + CEBOLLA >= 1;
+\ci: C2 , QUESO + BAICON + CEBOLLA >= 1;
+252 soluciones
+
+\ce: C6 HAMBURGUESA,
+1 (0.2)
+2 (0.4)
+3 (0.8)
+4 (0.9)
+5 (1.0);
+\ce: C7 QUESO,
+0 (0.1)
+1 (0.2)
+2 (0.4)
+3 (0.8);
+\ce: C8 BAICON,
+0 (0.1)
+1 (0.2)
+2 (0.4)
+3 (0.8);
+\ce: C9 CEBOLLA,
+0 (0.1)
+1 (0.2)
+2 (0.4)
+3 (0.8);
+
+Con alfa=0.1, 252 soluciones
+Con alfa=0.8, dos soluciones
+
+#### Ejer-3. #####################
+\fuzzy_cut_step : 0.10;
+\alpha = 0.8;
+#\filtering : f ;
+\search : fc , all_solutions ;
+\value_order: bottom_first;
+\static_labeling_order : smallest_domain ;
+\verbose : display_solutions ;
+\save : salida.csp ;
+##############################
+###
+VARIABLES
+###
+##############################
+\vi = PAN 2...5 ;
+\vi = HAMBURGUESA 1...5 ;
+\vi = QUESO 0...3 ;
+\vi = CEBOLLA 0...3 ;
+\vi = BAICON 0...3 ;
+\outsol : all alphabetic_order display_step;
+##############################
+### CONTRAINTES
+###
+##############################
+\ci: C1, PAN=HAMBURGUESA +1;
+\ci: C2 , QUESO + BAICON + CEBOLLA >= 1;
+\ce: C6 HAMBURGUESA,
+1 (0.2)
+2 (0.4)
+3 (0.8)
+4 (0.9)
+5 (1.0);
+\ce: C7 QUESO,
+0 (0.1)
+1 (0.2)
+2 (0.4)
+3 (0.8);
+\ce: C8 BAICON,
+0 (0.1)
+1 (0.2)
+2 (0.4)
+3 (0.8);
+\ce: C9 CEBOLLA,
+0 (0.1)
+1 (0.2)
+2 (0.4)
+3 (0.8);
+\ce: C10 QUESO HAMBURGUESA,
+1 1 (0.4)
+2 2 (0.6)
+3 3 (0.8);
+
+Con alfa=0.1, 48 soluciones
+Con alfa=0.4, 8 soluciones
+Con alfa=0.8, una soluciones
+
+
