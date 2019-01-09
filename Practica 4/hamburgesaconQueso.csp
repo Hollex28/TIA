@@ -1,4 +1,4 @@
-##### c4q.csp = HAMBURGESA
+##### c4q.csp = HAMBURGESA CON QUESO
 
 ##########################################
 ###   Requetes, Parametres et Options  ###
@@ -72,3 +72,8 @@
 						2	(0.4)
 						1	(0.2)
 						0	(0.1);
+\ce: C10 hamburgesa queso,
+						1 1 (0.4)
+						2 2 (0.6)
+						3 3 (0.8);
+

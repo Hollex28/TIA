@@ -33,7 +33,7 @@
 ###       VARIABLES        ###
 ############################## 
 
-\vi : m1,m2,m3,m4,m5 0..4 ; #diminio de 1..npow(2) aqui n=3
+\vi : m1,m2,m3,m4,m5 0..3 ; #diminio de 1..npow(2) aqui n=3
 
 ##############################
 ###      CONTRAINTES       ###

@@ -1,0 +1,80 @@
+##### Fabricante de Coches.csp = Cuadrado Magico
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search : rfla ,
+	all_solutions
+#	best_solution
+#	first_solutions 5
+;
+\static_labeling_order  :
+	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+\vi : M1,M2,M3,M4,M5 0..3 ; #diminio de 1..npow(2) aqui n=3
+
+##############################
+###      CONTRAINTES       ###
+############################## 
+
+\doc : doc1a # 1.
+		\ci : ci1a1 , M1 != 1 ;
+	\or
+		\ci : ci1a2 , M2 = 1 ;
+	\or
+		\ci : ci1a2 , M2 = 2 ;;
+\doc : doc1b
+		\ci : ci1a1 , M1 = 1 ;
+	\or
+		\ci : ci1a2 , M2 != 2 ;;
+\doc : doc1c
+		\ci : ci1a1 , M1 = 1 ;
+	\or
+		\ci : ci1a2 , M2 != 1 ;;
+# M1 acabado “Metalizado” si y solamente si, o M3 tiene acabado base (sin “Pintura” ni “Metalizado”) o M5 tiene acabado “Pintura” y “Metalizado”.
+\doc : doc1d
+		\ci : ci1c1 , M1 != 2 ;
+	\or
+		\ci : ci1c2 , M3 = 0 ;
+	\or
+		\ci : ci1c3 , M5 = 3 ;;
+\doc : doc1e
+		\ci : ci1d1 , M3 != 0 ;
+	\or
+		\ci : ci1d2 , M1 = 2 ;;
+\doc : doc1f
+		\ci : ci1f1 , M5 != 3 ;
+	\or
+		\ci : ci1f2 , M1 = 2 ;;
+# Modelo M2 acabado “Pintura” si y solamente si, o modelo M1 acabado “Pintura” o “Metalizado”, o bien, Modelo M5 acabado base (sin “Pintura” ni “Metalizado”).
+\doc : doc2a
+		\ci : ci2a1 , M2 != 1 ;
+	\or
+		\ci : ci2a2 , M1 = 1 ;
+	\or
+		\ci : ci2a3 , M1 = 2 ;
+	\or
+		\ci : ci2a4 , M5 = 0 ;;
+
