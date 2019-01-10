@@ -1,0 +1,91 @@
+##### c4q.csp = HAMBURGESA CON QUESO
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.4;
+\filtering : f ;
+\search : rfla ,
+#	all_solutions
+	best_solution
+#	first_solutions 5
+;
+\static_labeling_order  :
+	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+\vi : pan 2..5;
+\vi : hamburgesa 1..5;
+\vi : beicon,cebolla,queso 0..3;
+
+##############################
+###      CONTRAINTES       ###
+############################## 
+#apartado 3.1
+\ci : dospanesporhamburgesa , pan = hamburgesa + 1 ;
+\doc: complemento
+		\ci: res2doc1, beicon != 0;
+	\or
+		\ci: res2doc2, queso != 0;
+	\or
+		\ci: res2doc3, cebolla != 0;
+;
+#en la solucion utiliza \ci; C2 queso+beicon+cebolla >=1 lo mio tendria que ser equivalente
+#apartado 3.2
+\ce: preferencias1 	hamburgesa,
+						5	(1)
+						4	(0.9)
+						3	(0.8)
+						2	(0.4)
+						1	(0.2);
+\ce: preferencias2 	beicon,
+						3	(0.8)
+						2	(0.4)
+						1	(0.2)
+						0	(0.1);
+\ce: preferencias3 	queso,
+						3	(0.8)
+						2	(0.4)
+						1	(0.2)
+						0	(0.1);
+\ce: preferencias4 	cebolla,
+						3	(0.8)
+						2	(0.4)
+						1	(0.2)
+						0	(0.1);
+\ce: preferencias5 hamburgesa queso,
+						1 1 (0.4)
+						2 2 (0.6)
+						3 3 (0.8);
+\ce: Examen cebolla queso,
+						1 1 (0.5)
+						2 2 (0.5)
+						3 3 (0.5)
+						1 2 (0.8)
+						1 3 (0.8)
+						2 3 (0.8)
+						2 1 (0.2)
+						3 1 (0.2)
+						3 2 (0.2)
+						0 0 (0.1);
+						
+

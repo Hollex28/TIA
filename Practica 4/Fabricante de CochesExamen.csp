@@ -1,0 +1,137 @@
+##### Fabricante de Coches.csp = Cuadrado Magico
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search : rfla ,
+	all_solutions
+#	best_solution
+#	first_solutions 5
+;
+\static_labeling_order  :
+	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+\vi : m1,m2,m3,m4,m5 0..3 ; #diminio de 1..npow(2) aqui n=3
+
+##############################
+###      CONTRAINTES       ###
+############################## 
+
+#m1=1 <-> m2=1 OR m2=2
+#m1=1 <-> m2=1 OR m2=2
+#(m1=1 -> (m2=1 OR m2=2)) AND ((m2=1 OR m2=2)-> m1=1)
+#( (m1 != 1) OR (m2 = 1 OR m2 = 2)) AND ((m2!=1 AND m2=2) OR (m1 = 1))
+\doc: restriccion2
+		\ci: res2doc1, m1!= 1;
+	\or
+		\ci: res2doc2, m2 = 1;
+	\or
+		\ci: res2doc3, m2 = 2;
+;
+\doc: restriccion1
+		\ci: res1doc1, m1= 1;
+	\or
+		\coc COC1
+				\ci: res1doc2, m2 != 1;
+			\and
+				\ci: re1doc3, m2 != 2; #res1doc2 and res1doc3
+		; 
+;
+# = [-M1(M) or M2(B) or M5(B)] and [(-M3(C) or M2(M)) AND (-M4(C) or M2(M)]
+\doc: restriccion8
+		\ci: res8doc1, m1!= 2;
+	\or
+		\ci: res8doc2, m2 = 0;
+	\or
+		\ci: res8doc3, m5 = 0;
+;
+\doc: restriccion9
+		\ci: res9doc1, m3 != 3;
+	\or
+		\ci: res9doc2, m2 = 2;
+;
+\doc: restriccion10
+		\ci: res10doc1, m4 != 3;
+	\or
+		\ci: res10doc2, m2 = 2;
+;
+\doc: restriccion3
+		\ci : res3doc1, m2 != 2;
+	\or
+		\ci : res3doc2, m3 != 3;
+	\or
+		\ci : res3doc3, m4 != 3;
+;
+
+\doc: restriccion4
+		\ci : res4doc1, m3 != 3;
+	\or
+		\ci : res4doc2, m2 = 2;
+;
+
+\doc: restriccion5
+		\ci : res5doc1, m2 = 2;
+	\or
+		\ci : res5doc2, m4 != 3;
+;
+\ci : restriccion6 , m1 != m2;
+\cim : restriccion7 , != (m3,m4,m5);
+# = [-M1(M) or M3(B) or M5(C)] and [(-M3(B) or M1(M)) AND (-M5(C) or M1(M)]
+\doc: restriccion11
+		\ci: res11doc1, m1!= 2;
+	\or
+		\ci: res11doc2, m3 = 0;
+	\or
+		\ci: res11doc3, m5 = 3;
+;
+\doc: restriccion12
+		\ci: res12doc1, m3 != 0;
+	\or
+		\ci: res12doc2, m1 = 2;
+;
+\doc: restriccion13
+		\ci: res13doc1, m5 != 3;
+	\or
+		\ci: res13doc2, m1 = 2;
+;
+# Condicion Examen
+
+\doc : docex1
+		\ci : ciex1a1 , m4!= 1 ;
+	\or
+		\ci : ciex1a2 , m1 = 0;
+	\or
+		\ci : ciex1a2 , m3 = 0 ;;
+\doc : docex2
+		\ci : ciex2a1 , m4 = 1 ;
+	\or
+		\ci : ciex2a2 , m1 != 0 ;;
+\doc : docex3
+		\ci : ciex3a1 , m4 = 1 ;
+	\or
+		\ci : ciex3a2 , m3 != 0 ;;
+
+\ci: M3NM , m3 != 2;
+
