@@ -11,11 +11,15 @@ Practicas de Tecnicas de Inteligencia Artifical de UPV año 2018-2019
 
 3. Practica - Planificacion
    - Escenario de Logistica.
+   - Modificaciones de Examen (rft con el enunciado y mis respuestas asi como los ficheros de codigo modificados)
 	
 4. Practica - CONFLEX
    - Problema del Cuadrado Magico
    - Problema del Fabricante de coches
    - CSP Valuados - Ejercicio Nueva Hamburgesa
    - CSP Valuados - Hamburgesa con queso
+   - Modificaciones de Examen (rft con el enunciado y mis respuestas asi como los ficheros de codigo modificados)
+   
+PRACTICAS FINALIZADAS, añadidos Examenes de todas las practicas
 
-PRACTICAS FINALIZADAS
+NOTA: Para ver los rft hay que descargarlos, github no los muestra bien
